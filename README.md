@@ -2,6 +2,9 @@
 
 A plugin to display all wired interfaces, front- and rear-ports of devices. If a device belongs to a Virtual-Chassis than all interfaces of all members are displayed.
 
+<img src="./docs/img/nautobot_plugin_wires_screenshot01.png" />
+
+
 ## Installation
 
 This module is currently not available at PyPi. (WIP)
