@@ -1,0 +1,69 @@
+<!-- nautobot_plugin_wires/tab_device_detail_1.html -->
+{% extends 'dcim/device.html' %}
+{% load helpers %}
+
+{% block content %}
+    {{ block.super }}
+    {% for dev, wires in report_data.items %}
+        <!-- dev:device name wires: all-wired-prots -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <table>
+                    <tr>
+                        <td><h4>Wiring List for:</strong></h4></td>
+                        <td><h4>&nbsp;{{ wires.0.wired_port.device_termination.device | hyperlinked_object }}</h4></td>
+                    <tr>
+                        <td>{{ header.device_model }}:</td>
+                        <td>&nbsp;{{ wires.0.device_model }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ header.device_rack }}:</td>
+                        <td>&nbsp;{{ wires.0.wired_port.device.rack|hyperlinked_object }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ header.device_position }}:</td>
+                        <td>&nbsp;{{ wires.0.device_position }}</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="panel-body">
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">{{ header.device_port_name }}</th>
+                            <th scope="col">{{ header.device_port_type }}</th>
+                            <th scope="col">{{ header.cable_type }}</th>
+                            <th scope="col">{{ header.cable_label }}</th>
+                            <th scope="col">{{ header.cable_status }}</th>
+                            <th scope="col">{{ header.peer_port_type }}</th>
+                            <th scope="col">{{ header.peer_port_name }}</th>
+                            <th scope="col">{{ header.peer_device_name }}</th>
+                            <th scope="col">{{ header.peer_model }}</th>
+                            <th scope="col">{{ header.peer_position }}</th>
+                            <th scope="col">{{ header.peer_rack }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for con in wires %}
+                            <tr>
+                                <th scope="row">{{ con.wired_port.device_port| hyperlinked_object }}</th>
+                                <td>{{ con.device_port_type }}</td>
+                                <td>{{ con.cable_type }}</td>
+                                <td>{{ con.wired_port.cable | hyperlinked_object }}</td>
+                                <td>{{ con.cable_status }}</td>
+                                <td>{{ con.peer_port_type }}</td>
+                                <td>{{ con.wired_port.peer_termination| hyperlinked_object }}</td>
+                                <td><a href="{{ con.wired_port.peer_device.get_absolute_url }}">{{ con.peer_device_name }} </a></td>
+                                <td>{{ con.peer_model }}</td>
+                                <td>{{ con.peer_position }}</td>
+                                <td>{{ con.peer_rack }}</td>
+                            </tr>
+                        {% endfor %}                
+                    </tbody>
+                </table>  
+            </div>  <!-- panel-body -->
+        </div>  <!-- end panel -->
+    {% endfor %}
+{% endblock %}
