@@ -16,7 +16,7 @@ Use `poetry` to install the plugin from github
 poetry add git+https://github.com/jifox/nautobot-plugin-wires.git#main
 
 # Install with pip
-pip install git+git+https://github.com/jifox/nautobot-plugin-wires.git@main
+pip install git+https://github.com/jifox/nautobot-plugin-wires.git@main
 ```
 
 ## Configure plugin
