@@ -1,7 +1,6 @@
 # <img src="./docs/img/wires.png" width="30" /> Nautobot-Plugin-Wires
 
-A plugin to display all wired interfaces, front- and rear-ports of devices.
-If a device belongs to a Virtual-Chassis than all interfaces of all members are displayed.
+A plugin to display all wired interfaces, front- and rear-ports of devices. If a device belongs to a Virtual-Chassis than all interfaces of all members are displayed.
 
 ## Installation
 
