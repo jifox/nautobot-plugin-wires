@@ -157,9 +157,9 @@ class CalculateWiresReportData:
                 "cable_status": con["cable"].status.name,
                 "peer_port_type": con["peer_termination"].type,
                 "peer_port_name": abbreviated_interface_name(con["peer_termination"].name),
-                # # customize peer_device_name (truncate site name)
-                # "peer_device_name": con["peer_termination"].device.name.split("__@")[0],
-                "peer_device_name": con["peer_termination"].device.name,
+                # customize peer_device_name (truncate site name)
+                "peer_device_name": con["peer_termination"].device.name.split("__@")[0],
+                # "peer_device_name": con["peer_termination"].device.name,
                 "peer_model": peer_model,
                 "peer_position": peer_position,  # Conn-Position
                 "peer_rack": peer_rack,  # Conn-Rack
