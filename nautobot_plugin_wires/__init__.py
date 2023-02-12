@@ -21,7 +21,7 @@ class WiresPluginConfig(PluginConfig):
     description = "Nautobot Plugin to add tab [Wires] to device detail page"
     base_url = "wires"
     min_version = "1.4.0"
-    max_version = "1.9.99"
+    # max_version = "1.9.99"
     middleware = []
     installed_apps = ["nautobot.extras.tests.example_plugin_dependency"]
 
