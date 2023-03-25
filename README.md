@@ -4,7 +4,6 @@ A plugin to display all wired interfaces, front- and rear-ports of devices. If a
 
 <img src="./docs/img/nautobot_plugin_wires_screenshot01.png" />
 
-
 ## Installation
 
 This module is currently not available at PyPi. (WIP)
@@ -18,6 +17,13 @@ poetry add git+https://github.com/jifox/nautobot-plugin-wires.git#main
 # Install with pip
 pip install git+https://github.com/jifox/nautobot-plugin-wires.git@main
 ```
+
+**Nautobot Compatibility**
+
+| Wires Plugin Version | Nautobot Version | Tag |
+| --- | --- | --- |
+| 0.9.0 | > 1.4.0 | v0.9 |
+| 1.0.0 | > 1.5.2 | v1.0 |
 
 ## Configure plugin
 

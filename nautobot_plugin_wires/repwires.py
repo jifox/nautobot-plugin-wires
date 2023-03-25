@@ -28,7 +28,7 @@ class CalculateWiresReportData:
         self.get_wired_ports(self.device)
         self.get_wire_report()
 
-    def get_wired_ports(self, device):
+    def get_wired_ports(self, curr_device):
         """Get all ports of a device that are cabled and update the self.cabled_ports list.
 
         Multiple Calls will add data to the list.
@@ -37,23 +37,26 @@ class CalculateWiresReportData:
             device (Device): Device object
         """
         devices = [device]
+        # Check if device is part of a virtual chassis
         if device.virtual_chassis and device.virtual_chassis.members.count() > 1:
+            # Get all devices of the virtual chassis
             devices = device.virtual_chassis.members.all()
-        for device in devices:
-            self.device = device
-            for ports in device.interfaces, device.frontports, device.rearports:
+
+        for curr_device in devices:
+            self.device = curr_device
+            for ports in curr_device.interfaces, curr_device.frontports, curr_device.rearports:
                 if ports is not None:
                     for port in ports.all():
-                        device = port.device
+                        curr_device = port.device
                         if port.cable is not None:
-                            if port.cable.termination_a.device.id == device.id:
+                            if port.cable.termination_a.device.id == curr_device.id:
                                 device_termination = port.cable.termination_a
                                 device_type = port.cable.termination_a_type.model
                                 # termination_b == peer
                                 peer_device = port.cable.termination_b.device
                                 peer_type = port.cable.termination_b_type.model
                                 peer_termination = port.cable.termination_b
-                            elif port.cable.termination_b.device.id == device.id:
+                            elif port.cable.termination_b.device.id == curr_device.id:
                                 device_termination = port.cable.termination_b
                                 device_type = port.cable.termination_b_type.model
                                 # termination_a == peer

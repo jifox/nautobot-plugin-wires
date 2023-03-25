@@ -7,10 +7,10 @@ except ImportError:
 
 __version__ = metadata.version(__name__)
 
-from nautobot.extras.plugins import PluginConfig
+from nautobot.apps import NautobotAppConfig
 
 
-class WiresPluginConfig(PluginConfig):
+class WiresAppConfig(NautobotAppConfig):
     """Plugin configuration class."""
 
     name = "nautobot_plugin_wires"
@@ -20,10 +20,10 @@ class WiresPluginConfig(PluginConfig):
     version = __version__
     description = "Nautobot Plugin to add tab [Wires] to device detail page"
     base_url = "wires"
-    min_version = "1.4.0"
+    min_version = "1.5.2"
     # max_version = "1.9.99"
     middleware = []
     installed_apps = ["nautobot.extras.tests.example_plugin_dependency"]
 
 
-config = WiresPluginConfig  # pylint: disable=C0103
+config = WiresAppConfig  # pylint: disable=C0103

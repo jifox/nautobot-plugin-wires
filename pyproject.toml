@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "nautobot_plugin_wires"
-version = "0.9.0"
+version = "1.0.0"
 description = "Nautobot Plugin to add a 'Wires' tab to device detail page"
 authors = ["Josef Fuchs", "josef.fuchs@j-fuchs.at"]
 
@@ -18,21 +18,22 @@ include = [
 # https://pypi.org/classifiers/
 classifiers = [
     "Intended Audience :: Developers",
-    "Development Status :: 4 - Beta",
+    "Development Status :: 5 - Production/Stable",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
 ]
 packages = [
     { include = "nautobot_plugin_wires" },
 ]
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.8"
 deepdiff = "^5.5.0"
 ## Setting as next to test with DynamicGroup changes
-nautobot = ">=1.4.0"
+nautobot = ">=1.5.2"
 
 [tool.poetry.dev-dependencies]
 bandit = "*"

@@ -1,9 +1,9 @@
 # template_content.py
 from django.urls import reverse
-from nautobot.extras.plugins import PluginTemplateExtension
+from nautobot.apps.ui import TemplateExtension
 
 
-class DeviceExtraTabs(PluginTemplateExtension):
+class DeviceExtraTabs(TemplateExtension):
     """Template extension to add extra tabs to the object detail tabs."""
 
     model = "dcim.device"
