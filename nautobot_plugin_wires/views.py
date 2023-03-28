@@ -23,7 +23,7 @@ class DeviceDetailWiresTab(views.ObjectView):
     queryset = Device.objects.all()
     template_name = "nautobot_plugin_wires/tab_device_detail_wires.html"
 
-    def get(self, request, pk, slug):
+    def get(self, request, pk, **kwargs):
         """
         This method is called when a GET request is made to the view.
 
