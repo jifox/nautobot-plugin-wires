@@ -1,6 +1,7 @@
 """repwires.py - This module contains the class that calculates the data for the wires report."""
-from netutils.interface import abbreviated_interface_name
 from typing import Any, Dict, List
+
+from netutils.interface import abbreviated_interface_name
 
 # Outlook: Excel Export of the report data
 #     Excel:     https://xlsxwriter.readthedocs.io/example_django_simple.html
@@ -28,7 +29,7 @@ class CalculateWiresReportData:
         self.get_wired_ports(self.device)
         self.get_wire_report()
 
-    def get_wired_ports(self, curr_device):
+    def get_wired_ports(self, device):
         """Get all ports of a device that are cabled and update the self.cabled_ports list.
 
         Multiple Calls will add data to the list.
@@ -47,16 +48,16 @@ class CalculateWiresReportData:
             for ports in curr_device.interfaces, curr_device.frontports, curr_device.rearports:
                 if ports is not None:
                     for port in ports.all():
-                        curr_device = port.device
+                        port_device = port.device
                         if port.cable is not None:
-                            if port.cable.termination_a.device.id == curr_device.id:
+                            if port.cable.termination_a.device.id == port_device.id:
                                 device_termination = port.cable.termination_a
                                 device_type = port.cable.termination_a_type.model
                                 # termination_b == peer
                                 peer_device = port.cable.termination_b.device
                                 peer_type = port.cable.termination_b_type.model
                                 peer_termination = port.cable.termination_b
-                            elif port.cable.termination_b.device.id == curr_device.id:
+                            elif port.cable.termination_b.device.id == port_device.id:
                                 device_termination = port.cable.termination_b
                                 device_type = port.cable.termination_b_type.model
                                 # termination_a == peer
@@ -81,7 +82,7 @@ class CalculateWiresReportData:
     def get_wire_report(self):
         """Calculate the report data."""
         if not self.wired_ports:
-            return {}
+            return
 
         if not self.report_data:
             self.header_fields = {
