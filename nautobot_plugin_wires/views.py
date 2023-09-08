@@ -19,25 +19,14 @@ class DeviceDetailWiresTab(generic.ObjectView):
     queryset = Device.objects.all()
     template_name = "nautobot_plugin_wires/tab_device_detail_wires.html"
 
-    def get(self, request, pk):
-        """
-        This method is called when a GET request is made to the view.
-
-        The request and pk are passed to the view from the URL definition.
-        """
-        device = Device.objects.get(id=pk)
+    def get_extra_context(self, request, device):
         report = CalculateWiresReportData(device)
         wired_ports = report.wired_ports
         header = report.header_fields
         report_data = report.report_data
 
-        return render(
-            request=self.request,
-            template_name=self.template_name,
-            context={
-                "object": device,
-                "wired_ports": wired_ports,
-                "header": header,
-                "report_data": report_data,
-            },
-        )
+        return {
+            "wired_ports": wired_ports,
+            "header": header,
+            "report_data": report_data,
+        }
